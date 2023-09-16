@@ -15,8 +15,8 @@ import lombok.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(length = 20, nullable = false)
+    private Long userId;
 
     @Column(length = 20, nullable = false)
     private String nickname;
@@ -29,7 +29,7 @@ public class User {
 
     public static UserDto toUserDto(User user) {
         return UserDto.builder()
-                .id(user.id)
+                .userId(user.userId)
                 .nickname(user.nickname)
                 .loginId(user.loginId)
                 .password(user.password)

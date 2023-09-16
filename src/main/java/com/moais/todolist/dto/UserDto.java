@@ -23,7 +23,7 @@ public class UserDto implements UserDetails, Serializable {
 
     private final User user;
 
-    private Long id;
+    private Long userId;
 
     private String nickname;
 
