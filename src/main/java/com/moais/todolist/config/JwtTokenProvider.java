@@ -1,5 +1,7 @@
 package com.moais.todolist.config;
 
+import com.moais.todolist.dto.UserDto;
+import com.moais.todolist.service.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -49,8 +51,8 @@ public class JwtTokenProvider {
 
     // 인증 정보 조회
     public Authentication getAuthentication(String token) {
-        UserLoginDto userLoginDto = userService.loadUserByUsername(this.getUserPk(token));
-        return new UsernamePasswordAuthenticationToken(userLoginDto.getUser(), "", userLoginDto.getAuthorities());
+        UserDto userDto = userService.loadUserByUsername(this.getUserPk(token));
+        return new UsernamePasswordAuthenticationToken(userDto.getUser(), "", userDto.getAuthorities());
     }
 
     // 토큰에서 User 정보 추출
