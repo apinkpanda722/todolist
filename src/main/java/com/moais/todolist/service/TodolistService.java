@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class TodolistService {
 
-    private final UserService userService;
     private final TodolistRepository todolistRepository;
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
@@ -32,6 +31,22 @@ public class TodolistService {
                         .todo(todolistDto.getTodo())
                         .todoStatus(TodoStatus.WILL.toString())
                         .userId(user.getUserId())
+                .build());
+    }
+
+    @Transactional
+    public Todolist modifyTodo(Long todoId, TodolistDto todolistDto) throws Exception {
+        return todolistRepository.save(Todolist.builder()
+                        .todoId(todoId)
+                        .todo(todolistDto.getTodo())
+                        .todoStatus(todolistDto.getTodoStatus())
+                .build());
+    }
+
+    @Transactional
+    public void deleteTodo(Long todoId) throws Exception {
+        todolistRepository.delete(Todolist.builder()
+                .todoId(todoId)
                 .build());
     }
 }

@@ -24,7 +24,7 @@ public class Todolist extends BaseTimeEntity{
     @Column(length = 20, nullable = false, name = "todo_status")
     private String todoStatus;
 
-    @Column(length = 20, nullable = false, name = "user_id")
+    @Column(length = 20, nullable = false, name = "user_id", updatable = false)
     private Long userId;
 
 
