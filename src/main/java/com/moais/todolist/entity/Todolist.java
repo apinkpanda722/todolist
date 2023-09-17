@@ -1,7 +1,6 @@
 package com.moais.todolist.entity;
 
 import com.moais.todolist.dto.TodolistDto;
-import com.moais.todolist.dto.UserDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,15 +24,8 @@ public class Todolist extends BaseTimeEntity{
     @Column(length = 20, nullable = false, name = "todo_status")
     private String todoStatus;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @Column(length = 20, nullable = false, name = "CRE_ID")
-    private String creId;
-
-    @Column(length = 20, nullable = false, name = "CRE_IP")
-    private String creIp;
+    @Column(length = 20, nullable = false, name = "user_id")
+    private Long userId;
 
 
     public static TodolistDto toTodolistDto(Todolist todolist) {
