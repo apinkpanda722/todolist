@@ -1,9 +1,7 @@
 package com.moais.todolist.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -12,6 +10,7 @@ import java.io.Serializable;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class TodolistDto implements Serializable {
 
     @Serial
@@ -24,5 +23,14 @@ public class TodolistDto implements Serializable {
     private String todoStatus;
 
     private Long userId;
+
+    public TodolistDto(Long todoId,
+                      String todo,
+                      String todoStatus)
+    {
+        this.todoId = todoId;
+        this.todo = todo;
+        this.todoStatus = todoStatus;
+    }
 
 }

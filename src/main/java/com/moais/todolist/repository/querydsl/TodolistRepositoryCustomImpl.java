@@ -21,8 +21,7 @@ public class TodolistRepositoryCustomImpl extends QuerydslRepositorySupport impl
                         TodolistDto.class,
                         todolist.todoId,
                         todolist.todo,
-                        todolist.todoStatus,
-                        todolist.creDttm
+                        todolist.todoStatus
                 ))
                 .where(todolist.userId.eq(userId))
                 .orderBy(

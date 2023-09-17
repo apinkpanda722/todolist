@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @Slf4j
@@ -19,7 +21,7 @@ public class TodolistController {
     private final TodolistService todolistService;
 
     @PostMapping("/todolist")
-    public ResponseEntity<Todolist> todolist(
+    public ResponseEntity<TodolistDto> todolist(
             HttpServletRequest request,
             @RequestBody TodolistDto todolistDto,
             @AuthenticationPrincipal User user) throws Exception {
@@ -27,7 +29,7 @@ public class TodolistController {
     }
 
     @PutMapping("/todolist/{todoId}")
-    public ResponseEntity<Todolist> todoModify(
+    public ResponseEntity<TodolistDto> todoModify(
             @PathVariable("todoId") Long todoId,
             @RequestBody TodolistDto todolistDto,
             @AuthenticationPrincipal User user) throws Exception {
@@ -39,5 +41,19 @@ public class TodolistController {
             @PathVariable("todoId") Long todoId,
             @AuthenticationPrincipal User user) throws Exception {
         todolistService.deleteTodo(todoId);
+    }
+
+    @GetMapping("/todolist")
+    public ResponseEntity<List<TodolistDto>> getTodolist(
+            HttpServletRequest request,
+            @AuthenticationPrincipal User user) throws Exception {
+        return ResponseEntity.ok(todolistService.getTodolist(request));
+    }
+
+    @GetMapping("/todolist/todo/latest")
+    public ResponseEntity<TodolistDto> todoFetchOneByRecently(
+            HttpServletRequest request,
+            @AuthenticationPrincipal User user) throws Exception {
+        return ResponseEntity.ok(todolistService.todoFetchOneByRecently(request));
     }
 }

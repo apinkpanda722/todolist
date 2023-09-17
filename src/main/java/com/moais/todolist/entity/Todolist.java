@@ -33,6 +33,7 @@ public class Todolist extends BaseTimeEntity{
                 .todoId(todolist.todoId)
                 .todo(todolist.todo)
                 .todoStatus(todolist.todoStatus)
+                .userId(todolist.userId)
                 .build();
     }
 
