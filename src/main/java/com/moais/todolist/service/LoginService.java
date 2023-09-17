@@ -26,6 +26,9 @@ public class LoginService {
         // ID 체크
         User user = userRepository.findByLoginId(loginDto.getLoginId());
 
+        if (user == null)
+            throw new Exception("해당 유저가 존재하지 않습니다.");
+
         // 로그인 성공시 jwt 토큰 생성
         return jwtTokenProvider.createToken(user.getLoginId());
     }
@@ -37,6 +40,17 @@ public class LoginService {
                         .loginId(signUpDto.getLoginId())
                         .password(passwordEncoder.encode(signUpDto.getPassword()))
                 .build());
+    }
+
+    @Transactional
+    public void withdrawal(LoginDto loginDto) throws Exception {
+        // ID 체크
+        User user = userRepository.findByLoginId(loginDto.getLoginId());
+
+        if (user == null)
+            throw new Exception("해당 유저가 존재하지 않습니다.");
+
+        userRepository.deleteById(user.getUserId());
     }
 
 }

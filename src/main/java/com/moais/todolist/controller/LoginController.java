@@ -20,15 +20,15 @@ public class LoginController {
         return ResponseEntity.ok(loginService.login(loginDto));
     }
 
-    @PostMapping("/signUp")
+    @PostMapping("/signup")
     public ResponseEntity<User> signUp(
             @RequestBody SignUpDto signUpDto) throws Exception {
         return ResponseEntity.ok(loginService.signUp(signUpDto));
     }
 
-    @GetMapping("/list")
-    public String list(
-            @RequestBody SignUpDto signUpDto) throws Exception {
-        return "1";
+    @PostMapping("/withdrawal")
+    public void withdrawal(
+            @RequestBody LoginDto loginDto) throws Exception {
+        loginService.withdrawal(loginDto);
     }
 }

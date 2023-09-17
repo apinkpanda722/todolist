@@ -15,16 +15,16 @@ import lombok.*;
 public class User {
 
     @Id
-    @Column(length = 20, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 20, nullable = false, name = "nickname")
     private String nickname;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 20, nullable = false, name = "login_id")
     private String loginId;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 256, nullable = false, name = "password")
     private String password;
 
     public static UserDto toUserDto(User user) {
